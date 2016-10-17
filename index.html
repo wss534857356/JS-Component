@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>animation</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="style.css"/>
+    <style>
+      label:focus {
+        transform: scale(0.75) translate(0px, -28px);
+      }
+    </style>
+  </head>
+  <body>
+    <div style="display: flex;justify-content: center;align-content: center;">
+      <div style="text-align: center;width: 354px;margin: 10px;flex-direction: column;">
+        <p style="font-size: 18px;">'user-select: none'属性 使页面不能被选中</p>
+        <div style="transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;background-color: rgb(247, 247, 247);height: 400px;border-radius: 2px;box-shadow: 0px 2px 1px #999999;padding: 40px;box-sizing: border-box;-webkit-tap-highlight-color: rgba(0, 0, 0, 0);color: rgba(0, 0, 0, 0.870588);">
+          <div style="display: inline-block;position: relative;width: 100%;text-align: left;color: rgba(0, 0, 0, 0.870588);flex: 1 1 0%;">
+            <div style="font-size: 16px;line-height: 24px;width: 100%;height: 72px;display: inline-block;position: relative;background-color: transparent;font-family: 'Changa';transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;">
+              <label for="user" style="transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;text-align: left;z-index:1;position: absolute;line-height: 22px;cursor: text;top: 38px;color: rgba(0, 0, 0, 0.298039);transform: scale(1) translate(0px, 0px);pointer-events:none;transform-origin: left top 0px;">
+              用户名</label>
+              <div style="position: absolute;opacity: 0;color: rgba(0, 0, 0, 0.298039);transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;bottom: 9px;">请在此输入你的用户名</div>
+              <input type="text" autocomplete="off" id="user">
+              <div>
+                <hr style="border:none;border-bottom: 1px solid rgb(224, 224, 224);border-image: initial;box-sizing: content-box;margin: 0px;position: absolute;width: 100%;bottom: 8px;">
+                <hr style="border:none;border-bottom: 2px solid rgb(0, 188, 212);border-image: initial;box-sizing: content-box;margin: 0px;position: absolute;width: 100%;bottom: 8px;transform: scaleX(0);transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;">
+              </div>
+            </div>
+          </div>
+          <div style="color: rgba(0, 0, 0,0.870588); background-color: rgb(255, 255, 255); transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;box-sizing: border-box; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px; border-radius: 2px; display: inline-block; min-width: 100%; line-height: 36px;margin-top: 20px;">
+            <button style="border: 10px; box-sizing: border-box; display: inline-block; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer; text-decoration: none; margin: 0px; padding: 0px; font-weight: inherit;outline: none; font-size: inherit; transform: translate(0px, 0px); position: relative; height: 36px; width: 100%;border-radius: 2px;transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;background-color: rgb(0, 188, 212);text-align: center;" id="login"
+            class="click">
+              <div>
+                <span style="height: 100%; width: 100%; position: absolute; top: 0px; overflow: hidden; left: 0px;">
+                </span>
+                <div style="height: 36px; border-radius: 2px; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; top: 0px; line-height: 36px;">
+                  <span style="position: relative; opacity: 1; font-size: 14px; letter-spacing: 0px; text-transform: uppercase; font-weight: 500; margin: 0px; padding-left: 16px; padding-right: 16px; color: rgb(255, 255, 255); -webkit-user-select: none; ">点击</span>
+                </div>
+              </div>
+            </button>
+          </div>
+          <div style="color: rgba(0, 0, 0,0.870588); background-color: rgb(255, 255, 255); transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;box-sizing: border-box; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px; border-radius: 2px; display: inline-block; min-width: 100%; line-height: 36px;margin-top: 20px;">
+            <button style="border: 10px; box-sizing: border-box; display: inline-block; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer; text-decoration: none; margin: 0px; padding: 0px; font-weight: inherit;outline: none; font-size: inherit; transform: translate(0px, 0px); position: relative; height: 36px; width: 100%;border-radius: 2px;transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;background-color: rgb(0, 188, 212);text-align: center;" id="login"
+            class="touch">
+              <div>
+                <span style="height: 100%; width: 100%; position: absolute; top: 0px; overflow: hidden; left: 0px;">
+                </span>
+                <div style="height: 36px; border-radius: 2px; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; top: 0px; line-height: 36px;">
+                  <span style="position: relative; opacity: 1; font-size: 14px; letter-spacing: 0px; text-transform: uppercase; font-weight: 500; margin: 0px; padding-left: 16px; padding-right: 16px; color: rgb(255, 255, 255); -webkit-user-select: none; ">长按后松开</span>
+                </div>
+              </div>
+            </button>
+          </div>
+          <div style="color: rgba(0, 0, 0,0.870588); background-color: rgb(255, 255, 255); transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;box-sizing: border-box; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px; border-radius: 2px; display: inline-block; min-width: 25%; line-height: 36px;margin-top: 20px;">
+            <button style="border: 10px; box-sizing: border-box; display: inline-block; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer; text-decoration: none; margin: 0px; padding: 0px; font-weight: inherit;outline: none; font-size: inherit; transform: translate(0px, 0px); position: relative; height: 36px; width: 100%;border-radius: 2px;transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;background-color: rgb(0, 188, 212);text-align: center;" id="login"
+            class="touch">
+              <div>
+                <span style="height: 100%; width: 100%; position: absolute; top: 0px; overflow: hidden; left: 0px;">
+                </span>
+                <div style="height: 36px; border-radius: 2px; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; top: 0px; line-height: 36px;">
+                  <span style="position: relative; opacity: 1; font-size: 14px; letter-spacing: 0px; text-transform: uppercase; font-weight: 500; margin: 0px; padding-left: 16px; padding-right: 16px; color: rgb(255, 255, 255); -webkit-user-select: none; ">点</span>
+                </div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript">
+    const docs = document.getElementsByTagName('input');
+    for (let i = 0; i < docs.length; i++) {
+      const label = docs[i].previousElementSibling.previousElementSibling;
+      const hiniText = docs[i].previousElementSibling;
+      const hr = docs[i].nextElementSibling.lastElementChild;
+      docs[i].onfocus = function () {
+        if(this.value === ""){
+          hiniText.style.opacity="1";
+          label.style.transform="scale(0.75) translate(0px, -28px)";
+          label.style.color="rgb(0, 188, 212)";
+          hr.style.transform="scaleX(1)";
+        }
+      }
+      docs[i].onblur = function () {
+        if(this.value === ""){
+          label.style.transform="scale(1) translate(0px, 0px)";
+          label.style.color="rgba(0, 0, 0, 0.298039)";
+          hiniText.style.opacity="0";
+          hr.style.transform="scaleX(0)";
+        }
+      }
+      docs[i].oninput = function () {
+        if(this.value !== ""){
+          hiniText.style.opacity="0";
+        }else {
+          hiniText.style.opacity="1";
+        }
+      }
+    }
+    function eventOrdinate(ev, type) {
+      const event = {};
+      switch(type){
+        case 'click': 
+          event.eventX = ev.clientX;
+          event.eventY = ev.clientY;
+          break;
+        case 'touch':
+          let touch = ev.changedTouches[0];
+          event.eventX = Number(touch.pageX);
+          event.eventY = Number(touch.pageY);
+          break;
+      }
+      return event;
+    }
+    function clickDOM(ev, doc, type) {
+      const tMax = doc.offsetWidth > doc.offsetHeight
+                  ?doc.offsetWidth
+                  :doc.offsetHeight;
+      const event = eventOrdinate(ev, type);
+      const mLeft = event.eventX - doc.offsetLeft;
+      const mTop = event.eventY - doc.offsetTop;
+      const mMax = doc.offsetWidth > doc.offsetHeight ? mLeft : mTop;
+      const rWidth = mLeft > doc.offsetWidth/2 
+                   ? mLeft 
+                   : doc.offsetWidth-mLeft;
+      const rHeight = mTop > doc.offsetHeight/2 
+                   ? mTop 
+                   : doc.offsetHeight-mTop;
+      const radius = Math.sqrt( Math.pow( rWidth, 2 ) + Math.pow( rHeight, 2 ) );
+      console.log( radius );
+      const rLeft = mLeft - radius;
+      const rTop = mTop - radius;
+      const diameter = radius * 2;
+      return {
+        radius: {
+          top: rTop,
+          left: rLeft
+        },
+        diameter: diameter
+      }
+    }
+    function rippleDOM(rip, rippleStyle, style ,time) {
+      rippleStyle.opacity = style.opacity;
+      rippleStyle.transform = style.transform;
+      rippleStyle.position = "absolute"; 
+      rippleStyle.top = rip.radius.top + "px"; 
+      rippleStyle.left = rip.radius.left + "px"; 
+      rippleStyle.height = rip.diameter + "px"; 
+      rippleStyle.width = rip.diameter + "px"; 
+      rippleStyle.borderRadius = "50%"; 
+      rippleStyle.backgroundColor = "#ffffff"; 
+      rippleStyle.transition = "opacity "+ time.opacity +"s cubic-bezier(0.23, 1, 0.32, 1) 0ms, transform "+ time.transform +"s cubic-bezier(0.23, 1, 0.32, 1) 0ms";
+      return rippleStyle;
+    }
+    const clickBtns = document.getElementsByClassName('click');
+    for (let i = 0; i < clickBtns.length; i++) {
+      let btn = clickBtns[i];
+      const span = btn.children[0].children[0];
+      btn.onclick = function (ev) {
+        const ripple = document.createElement('div');
+        let rippleStyle = ripple.style;
+        let rip = clickDOM(ev, this, 'click');
+        rippleStyle = rippleDOM(
+          rip,
+          rippleStyle, 
+          style = {opacity: 0.25, transform: "scale(0)"},
+          time = {opacity: 2, transform: 1}
+        );
+        span.appendChild(ripple);
+        function touch() {
+          rippleStyle = rippleDOM(
+            rip,
+            rippleStyle, 
+            {opacity: 0, transform: "scale(1)"},
+            {opacity: 2, transform: 1}
+          );
+        }
+        function remove () {
+          if(ripple){
+            span.removeChild(ripple);
+            delete ripple;
+          }
+        }
+        setTimeout(touch, 10);
+        setTimeout(remove, 2000);
+      }
+      btn.onmouseup = function () {
+        // body...
+      }
+      
+    }
+     function browserRedirect() {
+      var sUserAgent = navigator.userAgent.toLowerCase();
+      var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+      var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+      var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+      var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+      var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+      var bIsAndroid = sUserAgent.match(/android/i) == "android";
+      var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+      var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+      if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+        return "phone";
+      } else {
+        return "pc";
+      }
+    }
+
+    const touchBtns = document.getElementsByClassName('touch');
+    const webType = browserRedirect();
+    const clikeType = {};
+    clikeType.start = (webType === "phone")? 'touchstart': 'mousedown';
+    clikeType.end = (webType === "phone")? 'touchend': 'mouseup';
+      for (let i = 0; i < touchBtns.length; i++) {
+        let btn = touchBtns[i];
+        const span = btn.children[0].children[0];
+        let rip = "";
+        let ripple = "";
+        btn.addEventListener(clikeType.start, function (ev) {
+          ripple = document.createElement('div');
+          let rippleStyle = ripple.style;
+          rip = (webType === "phone")
+                    ?clickDOM(ev, this, 'touch')
+                    :clickDOM(ev, this, 'click');
+          rippleStyle = rippleDOM(
+            rip,
+            rippleStyle, 
+            style = {opacity: 0.25, transform: "scale(0)"},
+            time = {opacity: 10, transform: 5}
+          );
+          span.appendChild(ripple);
+          function touch() {
+            rippleStyle = rippleDOM(
+              rip,
+              rippleStyle, 
+              style = {opacity: 0.25, transform: "scale(1)"},
+              time = {opacity: 10, transform: 5}
+            ); 
+          }
+          function remove () {
+            if(this.ripple){
+              span.removeChild(span.lastElementChild);
+              delete this.ripple;
+            }
+          }
+          // touch();
+          setTimeout(touch, 0);
+          // setTimeout(remove, 10000);
+        },false);
+        btn.addEventListener(clikeType.end, function (ev) {
+          let endRipple = span.firstElementChild;
+          let rippleStyle = ripple.style;
+          
+          function move() {
+            rippleStyle = rippleDOM(
+              rip,
+              rippleStyle, 
+              style = {opacity: 0, transform: "scale(1.49)"},
+              time = {opacity: 2, transform: 2}
+            );
+          }
+          function remove () {
+            if( endRipple.style.opacity === 0 )
+              span.removeChild(endRipple);
+          }
+          setTimeout(move, 0);
+          setTimeout(remove, 2000);
+        },false);
+        
+      }
+  </script>
+  <!-- <script type="text/javascript">
+  if(window.Notification) {
+    const btn = document.getElementById('login');
+  
+    const popNotice = function () {
+      const notification = new Notification('欢迎:', {
+        body: '欢迎登录',
+        icon: 'http://image.zhangxinxu.com/image/study/s/s128/mm1.jpg',
+        noscreen: true,
+        renotify: true,
+        vibrate: [200, 100, 200],
+        lang: 'cn',
+        tag: 'info',
+      });
+  
+      notification.onclick = function () {
+        notification.close();
+        // TODO: 对noctification的点击事件进行相应;
+      }
+    }
+  
+    btn.onclick = function () {
+      if (Notification.permission == "granted") {
+        popNotice();
+      } else if (Notification.permission != "denied") {
+        Notification
+          .requestPermission()
+          .then(function(result) {
+            if (result == "granted"){
+              popNotice();
+            }
+          });
+      }
+    }
+  } else {
+    // TODO: 因为浏览器不支持Notification 相关属性, 对于信息通知需要另一套方法, 对于移动端也需要一种消息通知方法
+  }
+  
+  </script> -->
+</html>
