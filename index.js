@@ -94,7 +94,7 @@ for (let i = 0; i < clickBtns.length; i++) {
       rippleStyle, 
       style = {opacity: 0.25, transform: "scale(0)"},
       time = {opacity: 2, transform: 1}
-      );
+    );
     span.appendChild(ripple);
     function touch() {
       rippleStyle = rippleDOM(
@@ -140,13 +140,13 @@ for (let i = 0; i < touchBtns.length; i++) {
   let btn = touchBtns[i];
   const span = btn.children[0].children[0];
   let rip = "";
-  let ripple = "";
   btn.addEventListener(clikeType.start, function (ev) {
-    ripple = document.createElement('div');
+    if (rip !=="") return ;
+    let ripple = document.createElement('div');
     let rippleStyle = ripple.style;
     rip = (webType === "phone")
-    ?clickDOM(ev, this, 'touch')
-    :clickDOM(ev, this, 'click');
+        ?clickDOM(ev, this, 'touch')
+        :clickDOM(ev, this, 'click');
     rippleStyle = rippleDOM(
       rip,
       rippleStyle, 
@@ -168,25 +168,24 @@ for (let i = 0; i < touchBtns.length; i++) {
         delete this.ripple;
       }
     }
-          // touch();
-          setTimeout(touch, 0);
-          // setTimeout(remove, 10000);
-        },false);
+    // touch();
+    setTimeout(touch, 0);
+    // setTimeout(remove, 10000);
+  },false);
   btn.addEventListener(clikeType.end, function (ev) {
-    let endRipple = span.firstElementChild;
-    let rippleStyle = ripple.style;
-
+    let endRipple = span.lastElementChild;
+    let rippleStyle = endRipple.style;
     function move() {
       rippleStyle = rippleDOM(
         rip,
         rippleStyle, 
         style = {opacity: 0, transform: "scale(1.49)"},
         time = {opacity: 2, transform: 2}
-        );
+      );
+      rip = "";
     }
     function remove () {
-      if( endRipple.style.opacity === 0 )
-        span.removeChild(endRipple);
+      span.removeChild(endRipple);
     }
     setTimeout(move, 0);
     setTimeout(remove, 2000);
