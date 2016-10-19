@@ -69,4 +69,43 @@
     </div>
   </body>
   <script type="text/javascript" src="index.js"></script>
+  <!-- <script type="text/javascript">
+  if(window.Notification) {
+    const btn = document.getElementById('login');
+  
+    const popNotice = function () {
+      const notification = new Notification('欢迎:', {
+        body: '欢迎登录',
+        icon: 'http://image.zhangxinxu.com/image/study/s/s128/mm1.jpg',
+        noscreen: true,
+        renotify: true,
+        vibrate: [200, 100, 200],
+        lang: 'cn',
+        tag: 'info',
+      });
+  
+      notification.onclick = function () {
+        notification.close();
+        // TODO: 对noctification的点击事件进行相应;
+      }
+    }
+  
+    btn.onclick = function () {
+      if (Notification.permission == "granted") {
+        popNotice();
+      } else if (Notification.permission != "denied") {
+        Notification
+          .requestPermission()
+          .then(function(result) {
+            if (result == "granted"){
+              popNotice();
+            }
+          });
+      }
+    }
+  } else {
+    // TODO: 因为浏览器不支持Notification 相关属性, 对于信息通知需要另一套方法, 对于移动端也需要一种消息通知方法
+  }
+  
+  </script> -->
 </html>

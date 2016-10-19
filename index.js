@@ -68,7 +68,8 @@ function clickDOM(ev, doc, type) {
     diameter: diameter
   }
 }
-function rippleDOM(rip, rippleStyle, style ,time) {
+function rippleDOM(rip, ripplestyle, style ,time) {
+  let rippleStyle = ripplestyle;
   rippleStyle.opacity = style.opacity;
   rippleStyle.transform = style.transform;
   rippleStyle.position = "absolute"; 
@@ -102,7 +103,7 @@ for (let i = 0; i < clickBtns.length; i++) {
         rippleStyle, 
         {opacity: 0, transform: "scale(1)"},
         {opacity: 2, transform: 1}
-        );
+      );
     }
     function remove () {
       if(ripple){
@@ -110,7 +111,7 @@ for (let i = 0; i < clickBtns.length; i++) {
         delete ripple;
       }
     }
-    setTimeout(touch, 10);
+    setTimeout(touch, 0);
     setTimeout(remove, 2000);
   }
 }
@@ -187,8 +188,64 @@ for (let i = 0; i < touchBtns.length; i++) {
     function remove () {
       span.removeChild(endRipple);
     }
+    move();
     setTimeout(move, 0);
     setTimeout(remove, 2000);
   },false);
-
 }
+
+const wrap = document.getElementById("wrap");
+let scrolling = false;
+function timeScroll(wheel, array) {
+  const frame = 60;
+  let Height = 0;
+  const time = 200;
+  let num = 0;
+
+  if(wheel === -1){
+    for (let i = array.length - 1; i >= 0; i--) {
+      if( array[i] < window.scrollY) {
+        Height = window.scrollY - array[i];
+        break;
+      }
+    }
+  } else {
+    for (let i = 0; i < array.length; i++) {
+      if( array[i] > window.scrollY) {
+        Height = array[i] - window.scrollY ;
+        break;
+      }
+    }
+  }
+  let height = (Height-Height%frame)/frame;
+
+  function scorll() {
+    if (num === frame){
+      window.scrollTo(0, window.scrollY+ wheel*Height%frame);
+    } else if (num > frame) {
+      clearInterval(timer);
+      scrolling=false;
+    } else {
+      window.scrollTo(0, window.scrollY+wheel*height);
+    }
+    num ++;
+  }
+  let timer = setInterval(scorll, time/frame);
+  // console.log(window.scrollY);
+}
+function mousewheel(event) {
+  if (event && event.preventDefault) {
+    event.preventDefault();
+  }
+  if(false === scrolling){
+    scrolling = true;
+    const page = document.getElementsByClassName('page');
+    const array = [];
+    for (var i = 0; i < page.length; i++) {
+      array[i]=page[i].offsetTop;
+    }
+  // console.log(array);
+  timeScroll(event.wheelDelta > 0?-1:1, array);
+  }
+}
+window.addEventListener("wheel", mousewheel);
