@@ -194,58 +194,27 @@ for (let i = 0; i < touchBtns.length; i++) {
   },false);
 }
 
-const wrap = document.getElementById("wrap");
-let scrolling = false;
-function timeScroll(wheel, array) {
-  const frame = 60;
-  let Height = 0;
-  const time = 200;
-  let num = 0;
-
-  if(wheel === -1){
-    for (let i = array.length - 1; i >= 0; i--) {
-      if( array[i] < window.scrollY) {
-        Height = window.scrollY - array[i];
-        break;
-      }
-    }
-  } else {
-    for (let i = 0; i < array.length; i++) {
-      if( array[i] > window.scrollY) {
-        Height = array[i] - window.scrollY ;
-        break;
-      }
-    }
-  }
-  let height = (Height-Height%frame)/frame;
-
-  function scorll() {
-    if (num === frame){
-      window.scrollTo(0, window.scrollY+ wheel*Height%frame);
-    } else if (num > frame) {
-      clearInterval(timer);
-      scrolling=false;
-    } else {
-      window.scrollTo(0, window.scrollY+wheel*height);
-    }
-    num ++;
-  }
-  let timer = setInterval(scorll, time/frame);
-  // console.log(window.scrollY);
+const tag = document.getElementById('tag');
+function comment(top, left) {
+  const commentBefore = document.createElement('div');
+  const commentDOM = document.createElement('div');
+  const commentAfter = document.createElement('div');
+  commentBefore.className = "commentBefore"
+  commentDOM.className = "comment";
+  commentDOM.style.top = top + 'px';
+  commentAfter.className = "commentAfter"
+  // commentAfter.style.top = -10px;
+  commentAfter.style.left = left + 'px';
+  console.log(left);
+  commentDOM.appendChild(commentBefore);
+  commentDOM.appendChild(commentAfter);
+  return commentDOM;
 }
-function mousewheel(event) {
-  if (event && event.preventDefault) {
-    event.preventDefault();
-  }
-  if(false === scrolling){
-    scrolling = true;
-    const page = document.getElementsByClassName('page');
-    const array = [];
-    for (var i = 0; i < page.length; i++) {
-      array[i]=page[i].offsetTop;
-    }
-  // console.log(array);
-  timeScroll(event.wheelDelta > 0?-1:1, array);
-  }
+function tagClick(event) {
+  const median = this.offsetWidth / 2 -10;
+  const top = this.offsetHeight + 15;
+  const commentDOM = comment(top, median);
+  // console.log(this.offsetWidth);
+  tag.appendChild(commentDOM);
 }
-window.addEventListener("wheel", mousewheel);
+tag.addEventListener('click', tagClick, false);
