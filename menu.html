@@ -4,7 +4,7 @@
   <title>菜单栏选项卡</title>
   <style type="text/css">
   .commentBefore {
-    position: relative;
+    position: absolute;
     /*margin: 30px auto 0;*/
     width: 150px;
     height: 55px;
@@ -12,10 +12,9 @@
     border-radius: 5px;
     /*transform:translate(0, 15px;);*/
     z-index: 0;
-    
   }
   .comment {
-    position: relative;
+    /*position: relative;*/
     position: absolute;
     transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
     animation:move_comment 0.4s linear;
@@ -45,24 +44,81 @@
   }
   @keyframes move_comment {
     from {
-      transform:translate(0, -20px);
+      /*transform:translate(0, -20px);*/
       opacity: 0;
     }
 
     to {
-      transform:translate(0, 0px);
+      /*transform:translate(0, 0px);*/
       opacity: 1;
     }
   }
+  .comment-leave {
+    /*position: relative;*/
+    position: absolute;
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    animation:leave 0.4s linear;
+    opacity: 0;
+  }
+  .btn {
+    /*position: relative;*/
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    box-sizing: border-box;
+    background-color: rgb(0, 188, 212);
+    border: 10px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    text-decoration: none;
+    margin: 0px; 
+    padding: 0px; 
+    font-weight: inherit;
+    outline: none;
+    font-size: inherit;
+    transform: translate(0px, 0px);
+    border-radius: 2px;
+    color:#fff;
+    width: 100%;
+    z-index: 1;
+    position:relative;
+  }
   .btn-focus {
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    box-sizing: border-box;
+    background-color: #1E88E5;
+    border: 10px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    text-decoration: none;
+    margin: 0px; 
+    padding: 0px; 
+    font-weight: inherit;
+    outline: none;
+    font-size: inherit;
+    transform: translate(0px, 0px);
+    border-radius: 2px;
+    color:#fff;
+    width: 100%;
+    z-index: 1;
+    position:relative;
+    cursor:default;
+  }
+  @keyframes leave {
+    from {
+      /*transform:translate(0, 0px);*/
+      opacity: 1;
+    }
 
+    to {
+      /*transform:translate(0, -10px);*/
+      opacity: 0;
+    }
   }
 </style>
 </head>
 <body>
   <div class="page">
     <div style="line-height: 36px;display: inline-block;">
-      <button class="click" id="tag" style="box-sizing: border-box;background-color: rgb(0, 188, 212);border: 10px;-webkit-tap-highlight-color: rgba(0, 0, 0, 0);cursor: pointer;text-decoration: none;margin: 0px; padding: 0px; font-weight: inherit;outline: none;font-size: inherit;transform: translate(0px, 0px);border-radius: 2px;color:#fff;width: 100%;z-index: 1;position:relative;">
+      <button class="click btn" id="tag" tabindex="1" >
         <div>
           <span style="height: 100%; width: 100%; position: absolute; top: 0px; overflow: hidden; left: 0px;">
           </span>
@@ -79,6 +135,8 @@
       </button>
     </div>
   </div>
-  <script type="text/javascript" src="index.js"></script>
+  <script type="text/javascript" src="index.js">
+    // console.log(window.event);
+  </script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 const docs = document.getElementsByTagName('input');
+
 for (let i = 0; i < docs.length; i++) {
   const label = docs[i].previousElementSibling.previousElementSibling;
   const hiniText = docs[i].previousElementSibling;
@@ -46,6 +47,7 @@ function clickDOM(ev, doc, type) {
   const tMax = doc.offsetWidth > doc.offsetHeight
   ?doc.offsetWidth
   :doc.offsetHeight;
+  // ev = ev || window.event;
   const event = eventOrdinate(ev, type);
   const mLeft = event.eventX - doc.offsetLeft;
   const mTop = event.eventY - doc.offsetTop;
@@ -82,38 +84,41 @@ function rippleDOM(rip, ripplestyle, style ,time) {
   rippleStyle.transition = "opacity "+ time.opacity +"s cubic-bezier(0.23, 1, 0.32, 1) 0ms, transform "+ time.transform +"s cubic-bezier(0.23, 1, 0.32, 1) 0ms";
   return rippleStyle;
 }
-const clickBtns = document.getElementsByClassName('click');
-for (let i = 0; i < clickBtns.length; i++) {
-  let btn = clickBtns[i];
-  const span = btn.children[0].children[0];
-  btn.onclick = function (ev) {
-    const ripple = document.createElement('div');
-    let rippleStyle = ripple.style;
-    let rip = clickDOM(ev, this, 'click');
+function btnOnclick(ev) {
+  console.log(this.window);
+  const span = this.children[0].children[0];
+  const ripple = document.createElement('div');
+  let rippleStyle = ripple.style;
+  // const ev = window.event;
+  let rip = clickDOM(ev, this, 'click');
+  rippleStyle = rippleDOM(
+    rip,
+    rippleStyle, 
+    style = {opacity: 0.25, transform: "scale(0)"},
+    time = {opacity: 2, transform: 1}
+  );
+  span.appendChild(ripple);
+  function touch() {
     rippleStyle = rippleDOM(
       rip,
       rippleStyle, 
-      style = {opacity: 0.25, transform: "scale(0)"},
-      time = {opacity: 2, transform: 1}
-    );
-    span.appendChild(ripple);
-    function touch() {
-      rippleStyle = rippleDOM(
-        rip,
-        rippleStyle, 
-        {opacity: 0, transform: "scale(1)"},
-        {opacity: 2, transform: 1}
+      {opacity: 0, transform: "scale(1)"},
+      {opacity: 2, transform: 1}
       );
-    }
-    function remove () {
-      if(ripple){
-        span.removeChild(ripple);
-        delete ripple;
-      }
-    }
-    setTimeout(touch, 0);
-    setTimeout(remove, 2000);
   }
+  function remove () {
+    if(ripple){
+      span.removeChild(ripple);
+      delete ripple;
+    }
+  }
+  setTimeout(touch, 0);
+  setTimeout(remove, 2000);
+}
+const clickBtns = document.getElementsByClassName('click');
+for (let i = 0; i < clickBtns.length; i++) {
+  let btn = clickBtns[i];
+  btn.addEventListener('click',btnOnclick);
 }
 function browserRedirect() {
   var sUserAgent = navigator.userAgent.toLowerCase();
@@ -193,19 +198,22 @@ for (let i = 0; i < touchBtns.length; i++) {
     setTimeout(remove, 2000);
   },false);
 }
-
+// const commentDOM;
 const tag = document.getElementById('tag');
 function comment(top, left) {
-  const commentBefore = document.createElement('div');
-  const commentDOM = document.createElement('div');
-  const commentAfter = document.createElement('div');
-  commentBefore.className = "commentBefore"
+  console.log(this.lastElementChild);
+  // if( this.lastElementChild.className !== "comment"){
+    const commentBefore = document.createElement('div');
+    const commentDOM = document.createElement('div');
+    const commentAfter = document.createElement('div');
+  // }
+  commentBefore.className = "commentBefore";
   commentDOM.className = "comment";
   commentDOM.style.top = top + 'px';
-  commentAfter.className = "commentAfter"
+  commentAfter.className = "commentAfter";
   // commentAfter.style.top = -10px;
   commentAfter.style.left = left + 'px';
-  console.log(left);
+  // console.log(left);
   commentDOM.appendChild(commentBefore);
   commentDOM.appendChild(commentAfter);
   return commentDOM;
@@ -214,7 +222,25 @@ function tagClick(event) {
   const median = this.offsetWidth / 2 -10;
   const top = this.offsetHeight + 15;
   const commentDOM = comment(top, median);
-  // console.log(this.offsetWidth);
-  tag.appendChild(commentDOM);
+  // console.log(this.offsetWidth, );
+  this.className = "btn-focus";
+  this.removeEventListener ('click', tagClick);
+  this.removeEventListener ('click', btnOnclick);
+  // commentDOM.tabIndex=0;
+  this.appendChild(commentDOM);
+  this.addEventListener('blur',tagOnblur, false);
 }
+function tagOnblur() {
+  this.className = "btn";
+  this.lastElementChild.className = "comment-leave";
+  this.addEventListener('click', btnOnclick);
+  this.addEventListener('click', tagClick);
+  // console.log(1);
+  /*setTimeout(function () {
+    this.removeChild(commentDOM);
+    this.lastElementChild.style.display = 'none';
+  }, 3000);*/
+}
+// tag.addEventListener('blur', tagOnblur, false);
 tag.addEventListener('click', tagClick, false);
+
