@@ -47,7 +47,6 @@ function clickDOM(ev, doc, type) {
   const tMax = doc.offsetWidth > doc.offsetHeight
   ?doc.offsetWidth
   :doc.offsetHeight;
-  // ev = ev || window.event;
   const event = eventOrdinate(ev, type);
   const mLeft = event.eventX - doc.offsetLeft;
   const mTop = event.eventY - doc.offsetTop;
@@ -89,7 +88,6 @@ function btnOnclick(ev) {
   const span = this.children[0].children[0];
   const ripple = document.createElement('div');
   let rippleStyle = ripple.style;
-  // const ev = window.event;
   let rip = clickDOM(ev, this, 'click');
   rippleStyle = rippleDOM(
     rip,
@@ -174,9 +172,7 @@ for (let i = 0; i < touchBtns.length; i++) {
         delete this.ripple;
       }
     }
-    // touch();
     setTimeout(touch, 0);
-    // setTimeout(remove, 10000);
   },false);
   btn.addEventListener(clikeType.end, function (ev) {
     let endRipple = span.lastElementChild;
@@ -198,36 +194,33 @@ for (let i = 0; i < touchBtns.length; i++) {
     setTimeout(remove, 2000);
   },false);
 }
-// const commentDOM;
 const tag = document.getElementById('tag');
-function comment(top, left) {
-  console.log(this.lastElementChild);
-  // if( this.lastElementChild.className !== "comment"){
+function comment(top, left, dom) {
+  if( dom.lastElementChild.className == false){
     const commentBefore = document.createElement('div');
-    const commentDOM = document.createElement('div');
+    commentDOM = document.createElement('div');
     const commentAfter = document.createElement('div');
-  // }
-  commentBefore.className = "commentBefore";
-  commentDOM.className = "comment";
-  commentDOM.style.top = top + 'px';
-  commentAfter.className = "commentAfter";
-  // commentAfter.style.top = -10px;
-  commentAfter.style.left = left + 'px';
-  // console.log(left);
-  commentDOM.appendChild(commentBefore);
-  commentDOM.appendChild(commentAfter);
-  return commentDOM;
+    commentBefore.className = "commentBefore";
+    commentDOM.className = "comment";
+    commentDOM.style.top = top + 'px';
+    commentAfter.className = "commentAfter";
+    commentAfter.style.left = left + 'px';
+    commentDOM.appendChild(commentBefore);
+    commentDOM.appendChild(commentAfter);
+    dom.appendChild(commentDOM);
+  } else {
+    commentDOM = dom.lastElementChild;
+    commentDOM.className = "comment";
+  }
+  return dom;
 }
 function tagClick(event) {
   const median = this.offsetWidth / 2 -10;
   const top = this.offsetHeight + 15;
-  const commentDOM = comment(top, median);
-  // console.log(this.offsetWidth, );
+  const dom = comment(top, median, this);
   this.className = "btn-focus";
   this.removeEventListener ('click', tagClick);
   this.removeEventListener ('click', btnOnclick);
-  // commentDOM.tabIndex=0;
-  this.appendChild(commentDOM);
   this.addEventListener('blur',tagOnblur, false);
 }
 function tagOnblur() {
@@ -235,12 +228,5 @@ function tagOnblur() {
   this.lastElementChild.className = "comment-leave";
   this.addEventListener('click', btnOnclick);
   this.addEventListener('click', tagClick);
-  // console.log(1);
-  /*setTimeout(function () {
-    this.removeChild(commentDOM);
-    this.lastElementChild.style.display = 'none';
-  }, 3000);*/
 }
-// tag.addEventListener('blur', tagOnblur, false);
 tag.addEventListener('click', tagClick, false);
-
