@@ -30,7 +30,7 @@
       position:absolute;
       width: 100%;
       /*padding-top: 48px;*/
-      height: 100%;
+      height: 612px;
     }
     body,html {
       margin: 0px;
@@ -75,10 +75,14 @@
     const body = document.getElementById('body');
     const content = document.getElementById('content');
     const head = document.getElementById('head');
-    const power = 2;
-    const topMax = 180;
+    const power = 3;
+    const topMax = 200;
+    const powerBack = 1/power;
     // console.log(window.outerHeight);
-    const touchMax = window.outerHeight;
+    const deviationX = Math.pow(Math.pow(powerBack, power),(1/(power-1)));
+    console.log(deviationX);
+    const deviationY = Math.pow(deviationX, powerBack);
+    const touchMax = 200;
     let touchPageY = 0;
     let lastScreenY = 0;
     let startScreenY = 0;
@@ -91,29 +95,32 @@
       lastScreenY = ev.changedTouches[0].screenY;
       head.style.transition = "none";
       content.style.transition = 'none';
-      // console.log(ev.changedTouches[0]);
     }
     function touchMoveFun(ev) {
-      // console.log();
       if (this.lastElementChild.scrollTop !== 0) return false;
-      console.log(startScreenY);
       if ( startScreenY === 0 || lastScreenY === 0) {
         startScreenY = ev.changedTouches[0].screenY;
         lastScreenY = ev.changedTouches[0].screenY;
       }
       touchPageY = ev.changedTouches[0].screenY - startScreenY;
+      touchPageY = touchPageY / topMax;
+      // console.log(touchPageY);
       if(touchPageY < 0) {
         touchPageY = 0;
         body.addEventListener('touchmove',touchMoveFun);
+        return false;
       } else {
         if (ev && ev.preventDefault) {
           event.preventDefault();
         }
+/*        if( touchPageY > touchMax/topMax ){
+          return false;
+        }*/
       }
-      leftY = Math.pow(touchPageY, 1 / power) / 
-              Math.pow(touchMax, 1 / power)
-              *topMax;
+      leftY = (Math.pow(touchPageY + deviationX, powerBack) - deviationY) * topMax;
       _leftY =  headHeight + leftY;
+      if(_leftY > touchMax)
+        return false;
       content.style.height = _leftY + 'px';
       head.style.height = _leftY + 'px';
       head.style.lineHeight = _leftY + 'px';
