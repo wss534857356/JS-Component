@@ -17,21 +17,20 @@
   <script type="text/javascript">
     const body = document.body;
     const slipper = document.getElementById('slipper');
-    slipper.addEventListener('mousemove', mousemove);
+    let x = slipper.style.left;
+    let y = slipper.style.top;
+    body.addEventListener('mousemove', mousemove);
     const that = slipper;
     that.style.position='absolute';
-    function 
     function mousemove(event) {
-      let x = event.clientX;
-      let y = event.clientY;
-      // console.log(x);
-      function changePlaces(){
-        
-        that.style.left = x +'px';
-        that.style.top = y+'px';
-      }
-      setTimeout(changePlaces,0);
+      x = event.clientX;
+      y = event.clientY;
     }
+    function changePlaces() {
+      that.style.left = x +'px';
+      that.style.top = y+'px';
+    }
+    setInterval(changePlaces,0);
   </script>
 </body>
 </html>
