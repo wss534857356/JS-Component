@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <div style="text-align: center;width: 354px;margin: 10px;flex-direction: column;" id="page">
+  <div style="text-align: center;width: 354px;flex-direction: column;" id="page">
     <div style="transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;background-color: rgb(247, 247, 247);height: 400px;border-radius: 2px;box-shadow: 0px 2px 1px #999999;box-sizing: border-box;-webkit-tap-highlight-color: rgba(0, 0, 0, 0);color: rgba(0, 0, 0, 0.870588);" >
       <div style="display: inline-block;position: relative;width: 100%;text-align: left;color: rgba(0, 0, 0, 0.870588);flex: 1 1 0%;">
       </div>
@@ -27,16 +27,20 @@
     const that = slipper;
     // that.style = slipper.style;
     drag(body, page);
+    let timer;
     function drag(drop, slide) {
       slide.addEventListener('mousedown', mousedown);
       drop.addEventListener('mouseup', mouseup);
-      let timer;
+      // let timer;
       function mousedown(event) {
         setX = parseInt(this.offsetLeft) - event.clientX;
+        // setX -= parseInt(this.style.margin);
         setY = parseInt(this.offsetTop) - event.clientY;
+        // setX -= parseInt(this.style.margin);
         console.log(setX);
         console.log(y);
         this.style.position = 'absolute';
+        clearInterval(timer);
         timer = setInterval(changePlaces, 1000/60);
         drop.addEventListener('mousemove', mousemove);
       }
