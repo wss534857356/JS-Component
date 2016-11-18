@@ -43,13 +43,24 @@ function eventOrdinate(ev, type) {
   }
   return event;
 }
+function getSeat(e){ 
+  var offsetTop=e.offsetTop; 
+  if(e.offsetParent!=null) offsetTop+=getSeat(e.offsetParent).offsetTop; 
+  var offsetLeft=e.offsetLeft; 
+  if(e.offsetParent!=null) offsetLeft+=getSeat(e.offsetParent).offsetLeft; 
+  return {
+    offsetTop: offsetTop,
+    offsetLeft: offsetLeft,
+  };
+} 
 function clickDOM(ev, doc, type) {
+  const docSeat = getSeat(doc);
   const tMax = doc.offsetWidth > doc.offsetHeight
   ?doc.offsetWidth
   :doc.offsetHeight;
   const event = eventOrdinate(ev, type);
-  const mLeft = event.eventX - doc.offsetLeft;
-  const mTop = event.eventY - doc.offsetTop;
+  const mLeft = event.eventX - docSeat.offsetLeft;
+  const mTop = event.eventY - docSeat.offsetTop;
   const mMax = doc.offsetWidth > doc.offsetHeight ? mLeft : mTop;
   const rWidth = mLeft > doc.offsetWidth/2 
   ? mLeft 
@@ -74,10 +85,12 @@ function rippleDOM(rip, ripplestyle, style ,time) {
   rippleStyle.opacity = style.opacity;
   rippleStyle.transform = style.transform;
   rippleStyle.position = "absolute"; 
-  rippleStyle.top = rip.radius.top + "px"; 
-  rippleStyle.left = rip.radius.left + "px"; 
-  rippleStyle.height = rip.diameter + "px"; 
-  rippleStyle.width = rip.diameter + "px"; 
+  if(rip){
+    rippleStyle.top = rip.radius.top + "px"; 
+    rippleStyle.left = rip.radius.left + "px";
+    rippleStyle.height = rip.diameter + "px"; 
+    rippleStyle.width = rip.diameter + "px"; 
+  }
   rippleStyle.borderRadius = "50%"; 
   rippleStyle.backgroundColor = "#ffffff"; 
   rippleStyle.transition = "opacity "+ time.opacity +"s cubic-bezier(0.23, 1, 0.32, 1) 0ms, transform "+ time.transform +"s cubic-bezier(0.23, 1, 0.32, 1) 0ms";
